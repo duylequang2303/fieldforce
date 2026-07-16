@@ -1,0 +1,43 @@
+.fsm-route-map-container {
+    height: 85vh;
+    background: linear-gradient(180deg, #fcfcfd 0%, #f6f8fb 100%);
+}
+.fsm-route-sidebar {
+    width: 320px;
+    min-width: 320px;
+    overflow-y: auto;
+    border-right: 1px solid rgba(34, 51, 84, 0.12);
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+.fsm-route-map {
+    min-height: 400px;
+}
+.fsm-route-sidebar h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+.fsm-route-sidebar .alert {
+    border: 0;
+    border-left: 4px solid #f59e0b;
+    background: #fff7e6;
+    color: #7c4a00;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.12);
+}
+.fsm-route-marker-badge {
+    background: #2b6cb0;
+    color: #fff;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}

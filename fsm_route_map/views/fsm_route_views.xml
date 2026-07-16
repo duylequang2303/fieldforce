@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fsm_route_list" model="ir.ui.view">
+        <field name="name">fsm.route.list</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="person_id"/>
+                <field name="team_id"/>
+                <field name="order_count"/>
+                <field name="total_distance_km"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_fsm_route_form" model="ir.ui.view">
+        <field name="name">fsm.route.form</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_open_map"
+                        type="object"
+                        string="View Map / Optimize Route"
+                        class="btn-primary"
+                    />
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="person_id"/>
+                            <field name="team_id"/>
+                            <field name="total_distance_km"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Visit Stops">
+                            <field name="order_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="location_id"/>
+                                    <field name="route_sequence"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_route" model="ir.actions.act_window">
+        <field name="name">Routes</field>
+        <field name="res_model">fsm.route</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_fsm_route_root"
+        name="Route Planning"
+        sequence="60"
+    />
+    <menuitem
+        id="menu_fsm_route"
+        name="Routes"
+        parent="menu_fsm_route_root"
+        action="action_fsm_route"
+        sequence="10"
+    />
+</odoo>

@@ -1,0 +1,154 @@
+<odoo>
+    <record id="demo_route_partner_1" model="res.partner">
+        <field name="name">Oakview Residence</field>
+        <field name="phone">+1 555 100 200</field>
+        <field name="email">oakview@example.com</field>
+        <field name="street">12 Garden Lane</field>
+        <field name="city">Bangkok</field>
+        <field name="partner_latitude">13.756330</field>
+        <field name="partner_longitude">100.501765</field>
+    </record>
+
+    <record id="demo_route_partner_2" model="res.partner">
+        <field name="name">Greenline Office Park</field>
+        <field name="phone">+1 555 100 201</field>
+        <field name="email">greenline@example.com</field>
+        <field name="street">88 Business Road</field>
+        <field name="city">Bangkok</field>
+        <field name="partner_latitude">13.742000</field>
+        <field name="partner_longitude">100.533000</field>
+    </record>
+
+    <record id="demo_route_partner_3" model="res.partner">
+        <field name="name">Palm Court Nursery</field>
+        <field name="phone">+1 555 100 202</field>
+        <field name="email">palmcourt@example.com</field>
+        <field name="street">500 Greenway Avenue</field>
+        <field name="city">Bangkok</field>
+        <field name="partner_latitude">13.770500</field>
+        <field name="partner_longitude">100.543100</field>
+    </record>
+
+    <record id="demo_route_person" model="fsm.person">
+        <field name="name">Daniel Foster</field>
+        <field name="phone">+1 555 300 400</field>
+        <field name="email">daniel.foster@example.com</field>
+    </record>
+
+    <record id="demo_route_person_2" model="fsm.person">
+        <field name="name">Mia Turner</field>
+        <field name="phone">+1 555 300 401</field>
+        <field name="email">mia.turner@example.com</field>
+    </record>
+
+    <record id="demo_route_team" model="fsm.team">
+        <field name="name">Morning Crew</field>
+        <field name="calendar_user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="demo_route_team_2" model="fsm.team">
+        <field name="name">Afternoon Crew</field>
+        <field name="calendar_user_id" ref="base.user_admin"/>
+    </record>
+
+    <record id="demo_route_location_1" model="fsm.location">
+        <field name="name">Oakview Residence</field>
+        <field name="partner_id" ref="demo_route_partner_1"/>
+        <field name="owner_id" ref="demo_route_partner_1"/>
+        <field name="street">12 Garden Lane</field>
+        <field name="city">Bangkok</field>
+        <field name="direction">Front gate access, call at arrival.</field>
+    </record>
+
+    <record id="demo_route_location_2" model="fsm.location">
+        <field name="name">Greenline Office Park</field>
+        <field name="partner_id" ref="demo_route_partner_2"/>
+        <field name="owner_id" ref="demo_route_partner_2"/>
+        <field name="street">88 Business Road</field>
+        <field name="city">Bangkok</field>
+        <field name="direction">Use the side entrance near the loading bay.</field>
+    </record>
+
+    <record id="demo_route_location_3" model="fsm.location">
+        <field name="name">Palm Court Nursery</field>
+        <field name="partner_id" ref="demo_route_partner_3"/>
+        <field name="owner_id" ref="demo_route_partner_3"/>
+        <field name="street">500 Greenway Avenue</field>
+        <field name="city">Bangkok</field>
+        <field name="direction">Meet the site manager at the service yard.</field>
+    </record>
+
+    <record id="demo_route_1" model="fsm.route">
+        <field name="name">Tuesday Morning Service Run</field>
+        <field name="date">2026-07-14</field>
+        <field name="person_id" ref="demo_route_person"/>
+        <field name="team_id" ref="demo_route_team"/>
+    </record>
+
+    <record id="demo_route_2" model="fsm.route">
+        <field name="name">Tuesday Afternoon Service Run</field>
+        <field name="date">2026-07-14</field>
+        <field name="person_id" ref="demo_route_person_2"/>
+        <field name="team_id" ref="demo_route_team_2"/>
+    </record>
+
+    <record id="demo_route_order_1" model="fsm.order">
+        <field name="name">Pruning Visit</field>
+        <field name="location_id" ref="demo_route_location_1"/>
+        <field name="person_id" ref="demo_route_person"/>
+        <field name="route_id" ref="demo_route_1"/>
+        <field name="route_sequence">1</field>
+        <field name="scheduled_date_start">2026-07-14 08:00:00</field>
+        <field name="scheduled_date_end">2026-07-14 09:00:00</field>
+    </record>
+
+    <record id="demo_route_order_2" model="fsm.order">
+        <field name="name">Irrigation Check</field>
+        <field name="location_id" ref="demo_route_location_2"/>
+        <field name="person_id" ref="demo_route_person"/>
+        <field name="route_id" ref="demo_route_1"/>
+        <field name="route_sequence">2</field>
+        <field name="scheduled_date_start">2026-07-14 09:30:00</field>
+        <field name="scheduled_date_end">2026-07-14 10:30:00</field>
+    </record>
+
+    <record id="demo_route_order_3" model="fsm.order">
+        <field name="name">Landscape Maintenance</field>
+        <field name="location_id" ref="demo_route_location_3"/>
+        <field name="person_id" ref="demo_route_person"/>
+        <field name="route_id" ref="demo_route_1"/>
+        <field name="route_sequence">3</field>
+        <field name="scheduled_date_start">2026-07-14 11:00:00</field>
+        <field name="scheduled_date_end">2026-07-14 12:30:00</field>
+    </record>
+
+    <record id="demo_route_order_4" model="fsm.order">
+        <field name="name">Mulching Refresh</field>
+        <field name="location_id" ref="demo_route_location_1"/>
+        <field name="person_id" ref="demo_route_person_2"/>
+        <field name="route_id" ref="demo_route_2"/>
+        <field name="route_sequence">1</field>
+        <field name="scheduled_date_start">2026-07-14 13:30:00</field>
+        <field name="scheduled_date_end">2026-07-14 14:30:00</field>
+    </record>
+
+    <record id="demo_route_order_5" model="fsm.order">
+        <field name="name">Tree Health Check</field>
+        <field name="location_id" ref="demo_route_location_2"/>
+        <field name="person_id" ref="demo_route_person_2"/>
+        <field name="route_id" ref="demo_route_2"/>
+        <field name="route_sequence">2</field>
+        <field name="scheduled_date_start">2026-07-14 15:00:00</field>
+        <field name="scheduled_date_end">2026-07-14 16:00:00</field>
+    </record>
+
+    <record id="demo_route_order_6" model="fsm.order">
+        <field name="name">Final Cleanup</field>
+        <field name="location_id" ref="demo_route_location_3"/>
+        <field name="person_id" ref="demo_route_person_2"/>
+        <field name="route_id" ref="demo_route_2"/>
+        <field name="route_sequence">3</field>
+        <field name="scheduled_date_start">2026-07-14 16:15:00</field>
+        <field name="scheduled_date_end">2026-07-14 17:00:00</field>
+    </record>
+</odoo>

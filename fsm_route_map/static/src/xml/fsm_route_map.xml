@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="fsm_route_map.RouteMap" owl="1">
+        <div class="fsm-route-map-container d-flex h-100">
+            <div class="fsm-route-sidebar p-3">
+                <h4>Visit Route</h4>
+                <div t-if="state.loading">Loading data...</div>
+                <div t-elif="state.error" class="alert alert-warning" t-esc="state.error"/>
+                <div t-else="">
+                    <button class="btn btn-primary mb-2 w-100" t-on-click="optimizeRoute">
+                        Optimize Route
+                    </button>
+                    <button class="btn btn-secondary mb-2 w-100" t-on-click="saveSequence">
+                        Save Sequence
+                    </button>
+                    <div t-if="state.distanceKm" class="mb-2">
+                        Total distance: <b><t t-esc="state.distanceKm"/> km</b>
+                    </div>
+                    <ol class="ps-3">
+                        <li t-foreach="state.orders" t-as="order" t-key="order.id">
+                            <t t-esc="order.name"/> — <t t-esc="order.location.name"/>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="fsm-route-map flex-grow-1" t-ref="mapContainer"/>
+        </div>
+    </t>
+</templates>

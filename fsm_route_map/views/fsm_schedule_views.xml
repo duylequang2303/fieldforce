@@ -1,0 +1,35 @@
+<odoo>
+    <record id="view_fsm_order_calendar_schedule" model="ir.ui.view">
+        <field name="name">fsm.order.calendar.schedule</field>
+        <field name="model">fsm.order</field>
+        <field name="arch" type="xml">
+            <calendar
+                string="Schedule"
+                date_start="scheduled_date_start"
+                date_stop="scheduled_date_end"
+                color="team_id"
+                mode="week"
+            >
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="person_id"/>
+                <field name="team_id"/>
+                <field name="route_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_fsm_schedule" model="ir.actions.act_window">
+        <field name="name">Schedule</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_mode">calendar,kanban,list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_fsm_schedule"
+        name="Schedule"
+        parent="menu_fsm_route_root"
+        action="action_fsm_schedule"
+        sequence="5"
+    />
+</odoo>
