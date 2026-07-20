@@ -65,15 +65,10 @@
     </record>
 
     <menuitem
-        id="menu_fsm_route_root"
-        name="Route Planning"
-        sequence="60"
-    />
-    <menuitem
         id="menu_fsm_route"
         name="Routes"
-        parent="menu_fsm_route_root"
+        parent="fieldservice.operations"
         action="action_fsm_route"
-        sequence="10"
+        sequence="50"
     />
 </odoo>

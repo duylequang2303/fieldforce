@@ -28,8 +28,8 @@
     <menuitem
         id="menu_fsm_schedule"
         name="Schedule"
-        parent="menu_fsm_route_root"
+        parent="fieldservice.operations"
         action="action_fsm_schedule"
-        sequence="5"
+        sequence="40"
     />
 </odoo>
