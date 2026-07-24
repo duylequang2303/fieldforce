@@ -12,12 +12,18 @@
     </record>
     <record id="location_partner_1" model="res.partner">
         <field name="name">Loc Partner 1</field>
+        <field name="partner_latitude">13.756330</field>
+        <field name="partner_longitude">100.501765</field>
     </record>
     <record id="location_partner_2" model="res.partner">
-        <field name="name">Loc Partner 1</field>
+        <field name="name">Loc Partner 2</field>
+        <field name="partner_latitude">13.742000</field>
+        <field name="partner_longitude">100.533000</field>
     </record>
     <record id="location_partner_3" model="res.partner">
-        <field name="name">Loc Partner 1</field>
+        <field name="name">Loc Partner 3</field>
+        <field name="partner_latitude">13.770500</field>
+        <field name="partner_longitude">100.543100</field>
     </record>
     <!-- res.partner with contacts -->
     <record id="s1" model="res.partner">

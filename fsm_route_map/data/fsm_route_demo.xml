@@ -57,6 +57,8 @@
         <field name="owner_id" ref="demo_route_partner_1"/>
         <field name="street">12 Garden Lane</field>
         <field name="city">Bangkok</field>
+        <field name="partner_latitude">13.756330</field>
+        <field name="partner_longitude">100.501765</field>
         <field name="direction">Front gate access, call at arrival.</field>
     </record>
 
@@ -66,6 +68,8 @@
         <field name="owner_id" ref="demo_route_partner_2"/>
         <field name="street">88 Business Road</field>
         <field name="city">Bangkok</field>
+        <field name="partner_latitude">13.742000</field>
+        <field name="partner_longitude">100.533000</field>
         <field name="direction">Use the side entrance near the loading bay.</field>
     </record>
 
@@ -75,6 +79,8 @@
         <field name="owner_id" ref="demo_route_partner_3"/>
         <field name="street">500 Greenway Avenue</field>
         <field name="city">Bangkok</field>
+        <field name="partner_latitude">13.770500</field>
+        <field name="partner_longitude">100.543100</field>
         <field name="direction">Meet the site manager at the service yard.</field>
     </record>
 

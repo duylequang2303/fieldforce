@@ -9,6 +9,17 @@ Tài liệu này lưu trữ thông tin bối cảnh dự án (Project Context) c
 * **Kho chứa mã nguồn:** [field-service](file:///home/odoodev/Duck/odoo/fieldforce)
 * **Mục tiêu:** Quản lý địa điểm dịch vụ (Locations), điều phối nhân viên (Workers), quản lý yêu cầu công việc (Orders), tích hợp kho bãi, phương tiện, thời gian và chi phí.
 
+### Thông tin Server & Deployment Backend
+* **Server URL:** `https://demo001.crmhub.vn/`
+* **Tài khoản đăng nhập:** `admin` / `CRMHub@2026`
+* **SSH truy cập:** `ssh root@demo001.crmhub.vn`
+* **File cấu hình Odoo:** `/etc/odoo19/odoo.conf`
+* **Lệnh restart Odoo:** `systemctl restart odoo19`
+* **SSH Public Key:**
+  ```text
+  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAWcPYvXwMUMOeEbO32SkTBuW7xIT2UVn0YRs1XyrinQ duylequang588@gmail.com
+  ```
+
 ---
 
 ## 2. Danh sách các Module Odoo hiện tại trong Workspace
