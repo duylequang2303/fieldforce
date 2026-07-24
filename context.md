@@ -20,6 +20,11 @@ Tài liệu này lưu trữ thông tin bối cảnh dự án (Project Context) c
   ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAWcPYvXwMUMOeEbO32SkTBuW7xIT2UVn0YRs1XyrinQ duylequang588@gmail.com
   ```
 
+### Thông tin Repository GitHub & Access Token
+* **Repository:** `https://github.com/duylequang2303/fieldforce`
+* **Username:** `duylequang2303`
+* **Personal Access Token (PAT):** `Configured in ~/.git-credentials`
+
 ---
 
 ## 2. Danh sách các Module Odoo hiện tại trong Workspace
