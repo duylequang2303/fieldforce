@@ -1,0 +1,48 @@
+// === Buttons ===
+.btn {
+  border-radius: $border-radius-sm;
+  transition: all $transition-fast;
+
+  &.btn-primary {
+    background-color: $primary !important;
+    border-color: $primary-dark !important;
+    color: $white !important;
+
+    &:hover, &:focus, &:active {
+      background-color: $primary-dark !important;
+      border-color: $primary-dark !important;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: $white;
+    border-color: $border;
+    color: $text-secondary;
+
+    &:hover, &:focus {
+      background-color: $bg-input;
+      color: $text-primary;
+    }
+  }
+}
+
+// === Form Controls ===
+.o_form_view {
+  .o_input, input.o_input, select.o_input, textarea.o_input {
+    border-radius: $border-radius-sm;
+    border: 1px solid $border;
+    padding: $spacing-xs $spacing-sm;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+      border-color: $primary;
+      box-shadow: $shadow-input-focus;
+      outline: none;
+    }
+  }
+
+  .o_form_label {
+    font-weight: 500;
+    color: $text-primary;
+  }
+}

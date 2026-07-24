@@ -1,0 +1,56 @@
+// === Primary (Sortscape Green) ===
+$primary: #5e9e2b;
+$primary-dark: #4a8022;
+$primary-light: #8cd656;
+
+// === Neutrals ===
+$white: #ffffff;
+$bg-body: #f0ede1;   // Strong warm beige for distinct contrast
+$bg-card: #ffffff;   // Pure white cards to pop out
+$bg-sidebar: #f0ede1;
+$bg-navbar: #33251c; // Dark brown/black header
+$bg-input: #ffffff;
+
+$text-primary: #33251c; // Dark brown text for better readability
+$text-secondary: #5e5a4f;
+$text-muted: #8c887a;
+$border: #d4cfbe;     // Crisper border for structure
+$border-light: #e6e2d3;
+
+// === Semantic ===
+$success: #5e9e2b;
+$danger: #d9534f;
+$warning: #f0ad4e;
+$info: #5bc0de;
+
+// === Spacing ===
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;   // Tighter spacing for professional layout
+$spacing-lg: 20px;
+$spacing-xl: 28px;
+$spacing-xxl: 40px;
+
+// === Typography ===
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$font-size-h1: 22px;
+$font-size-h2: 16px;
+$font-size-body: 13px;
+$font-size-caption: 11px;
+$line-height-relaxed: 1.4;
+
+// === Layout ===
+$border-radius-sm: 3px;
+$border-radius-md: 5px;
+$border-radius-lg: 6px;
+
+// === Shadows ===
+$shadow-card: 0 1px 2px rgba(51, 37, 28, 0.08);
+$shadow-card-hover: 0 4px 10px rgba(51, 37, 28, 0.12);
+$shadow-dropdown: 0 6px 16px rgba(51, 37, 28, 0.15);
+$shadow-input-focus: 0 0 0 0.25rem rgba(94, 158, 43, 0.25);
+
+// === Transitions ===
+$transition-fast: 120ms ease;
+$transition-base: 180ms ease;
+$transition-slow: 250ms ease;

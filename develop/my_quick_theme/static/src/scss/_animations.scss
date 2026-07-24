@@ -1,0 +1,25 @@
+// === Animations / Transitions ===
+.o_main_navbar,
+.o_sidebar,
+.o_card,
+.card,
+.btn,
+.dropdown-menu,
+.o_kanban_record,
+.o_calendar_event,
+.o_app {
+  transition: background $transition-fast, color $transition-fast, border-color $transition-fast, box-shadow $transition-base, transform $transition-base;
+}
+
+// Card lift already handled in _cards.scss
+// Button states already handled in _forms.scss
+
+// Dropdown fade-in
+.dropdown-menu {
+  animation: fadeIn $transition-fast;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

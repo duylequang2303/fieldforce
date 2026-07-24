@@ -1,0 +1,80 @@
+// === Control Panel & Search Bar ===
+.o_control_panel {
+  background-color: $bg-body !important;
+  border-bottom: 1px solid $border !important;
+  padding: $spacing-md $spacing-lg !important;
+
+  // Remove any weird white background from Odoo 19 layout wrappers
+  .o_control_panel_main,
+  .o_control_panel_breadcrumbs,
+  .o_control_panel_breadcrumbs_actions,
+  .o_control_panel_actions,
+  .o_control_panel_navigation {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  // Breadcrumbs (Left side)
+  .o_breadcrumb, .breadcrumb {
+    margin-bottom: 0 !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+
+    li, .breadcrumb-item {
+      font-weight: 600 !important;
+      color: $text-secondary !important;
+      font-size: 14px !important;
+
+      &.active {
+        color: $text-primary !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+      }
+
+      a {
+        color: $text-secondary !important;
+        text-decoration: none !important;
+        &:hover {
+          color: $primary !important;
+        }
+      }
+    }
+  }
+
+  // Search Bar (Right side usually)
+  .o_searchview {
+    background: $bg-input !important;
+    border: 1px solid $border !important;
+    border-radius: $border-radius-lg !important; // Rounded like Sortscape inputs
+    padding: $spacing-xs $spacing-sm !important;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05) !important;
+    
+    // Search icon
+    .o_searchview_icon {
+      color: $text-muted;
+      padding-right: $spacing-sm;
+    }
+    
+    .o_searchview_input {
+      color: $text-primary;
+      &::placeholder {
+        color: $text-muted;
+      }
+    }
+    
+    // The search facets (tags) inside the input
+    .o_searchview_facet {
+      background-color: $primary-light !important;
+      border: 1px solid $primary !important;
+      border-radius: $border-radius-sm !important;
+      color: $primary-dark !important;
+      
+      .o_searchview_facet_label {
+        background-color: $primary !important;
+        color: $white !important;
+        border-radius: $border-radius-sm 0 0 $border-radius-sm !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,141 @@
+// === Calendar Shell ===
+.o_calendar {
+  .o_calendar_view {
+    .o_calendar_toolbar {
+      height: 44px !important;
+      padding: 0 $spacing-md !important;
+      background: $bg-card !important;
+      border-bottom: 1px solid $border !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: $spacing-sm;
+      .o_calendar_button_today {
+        padding: $spacing-xs $spacing-md !important;
+        border-radius: $border-radius-sm !important;
+        background: $primary !important;
+        color: $white !important;
+        border: none !important;
+        font-weight: 500 !important;
+        font-size: $font-size-body !important;
+      }
+      .o_calendar_select {
+        height: 32px !important;
+        padding: 0 $spacing-md !important;
+        border-radius: $border-radius-sm !important;
+        border: 1px solid $border !important;
+        background: $bg-input !important;
+        font-size: $font-size-body !important;
+      }
+    }
+    .o_calendar_sidebar_container {
+      background: $bg-card !important;
+      border-right: 1px solid $border !important;
+      padding: $spacing-md !important;
+      width: 260px !important;
+      .ui-datepicker {
+        font-size: $font-size-body;
+        .ui-datepicker-header {
+          border: none !important;
+          background: transparent !important;
+          .ui-datepicker-title {
+            font-weight: 600;
+            color: $text-primary;
+          }
+          .ui-datepicker-prev, .ui-datepicker-next {
+            border-radius: $border-radius-sm !important;
+            &:hover { background: rgba($primary, 0.06) !important; }
+          }
+        }
+        .ui-datepicker-calendar {
+          th { padding: 4px 2px; color: $text-muted; font-weight: 500; }
+          td {
+            padding: 4px 2px;
+            border-radius: $border-radius-sm !important;
+            a {
+              padding: 6px !important;
+              border-radius: $border-radius-sm !important;
+              border: none !important;
+              background: transparent !important;
+              text-align: center !important;
+              &.ui-state-active {
+                background: $primary !important;
+                color: $white !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    .o_calendar_controller_container {
+      .o_calendar_week {
+        .o_calendar_week_header {
+          height: 40px !important;
+          border-bottom: 1px solid $border !important;
+        }
+        .o_calendar_week_day {
+          .o_calendar_week_cell {
+            border-left: 1px solid $border-light !important;
+            &.o_today {
+              background: rgba($primary, 0.05) !important;
+            }
+            .o_calendar_event {
+              border-radius: $border-radius-sm !important;
+              padding: 2px $spacing-xs !important;
+              font-size: $font-size-caption !important;
+              margin-bottom: 2px;
+              background: $primary-light !important;
+              color: $text-primary !important;
+              border-left: 3px solid $primary-dark !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .fc {
+    th, td { padding: $spacing-sm $spacing-xs; }
+    .fc-toolbar {
+      height: 44px !important;
+      padding: 0 $spacing-md !important;
+      background: $bg-card !important;
+      border-bottom: 1px solid $border !important;
+      .fc-button-primary {
+        background: $primary !important;
+        border-color: $primary-dark !important;
+        border-radius: $border-radius-sm !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+      }
+      .fc-toolbar-title {
+        font-size: $font-size-h2 !important;
+        font-weight: 600;
+      }
+    }
+    .fc-daygrid-day {
+      padding: 4px;
+      .fc-daygrid-day-frame {
+        border-radius: $border-radius-sm !important;
+        &.fc-day-today {
+          background: rgba($primary, 0.05) !important;
+        }
+      }
+    }
+    .fc-event {
+      border-radius: $border-radius-sm !important;
+      font-size: $font-size-caption !important;
+      padding: 2px $spacing-xs !important;
+      border: none !important;
+    }
+    .fc-col-header-cell {
+      background: transparent !important;
+      color: $text-muted !important;
+      font-weight: 500 !important;
+      font-size: $font-size-caption !important;
+      padding: 8px 4px !important;
+      border-bottom: 1px solid $border !important;
+    }
+    .fc-scrollgrid td, .fc-scrollgrid th {
+      border-color: $border-light !important;
+    }
+  }
+}

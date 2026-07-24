@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!-- Inherit the Navbar App Menu to inject app icons -->
+    <t t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//DropdownItem[@t-as='app']" position="replace">
+            <DropdownItem
+              t-foreach="apps"
+              t-as="app"
+              t-key="app.id"
+              class="{ 'o_app': true, focus: menuService.getCurrentApp() === app }"
+              onSelected="() => this.onNavBarDropdownItemSelection(app)"
+              attrs="{ href: getMenuItemHref(app), 'data-menu-xmlid': app.xmlid, 'data-section': app.id }"
+            >
+                <!-- This is the crucial part: Inject the image and span! -->
+                <img t-if="app.webIconData" t-attf-src="{{app.webIconData}}" class="o_app_icon"/>
+                <span class="o_app_name"><t t-esc="app.name"/></span>
+            </DropdownItem>
+        </xpath>
+    </t>
+</templates>

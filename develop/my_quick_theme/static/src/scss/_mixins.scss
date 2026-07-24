@@ -1,0 +1,70 @@
+// === Card Mixin ===
+@mixin card($padding: $spacing-lg, $radius: $border-radius-lg) {
+  background: $bg-card;
+  border-radius: $radius;
+  box-shadow: $shadow-card;
+  padding: $padding;
+  transition: transform $transition-base, box-shadow $transition-base;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-card-hover;
+  }
+}
+
+// === Button Base ===
+@mixin button-base($radius: $border-radius-md) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-body;
+  font-weight: 500;
+  border-radius: $radius;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background $transition-fast, border-color $transition-fast, opacity $transition-fast;
+  text-decoration: none;
+  line-height: 1.5;
+  &:active {
+    opacity: 0.92;
+  }
+}
+
+// === Input Base ===
+@mixin input-base($height: 40px, $radius: $border-radius-md) {
+  height: $height;
+  padding: 0 $spacing-md;
+  border: 1px solid $border;
+  border-radius: $radius;
+  background: $bg-input;
+  font-size: $font-size-body;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: $shadow-input-focus;
+  }
+}
+
+// === Section Title ===
+@mixin section-title {
+  font-size: $font-size-h2;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+  letter-spacing: -0.01em;
+}
+
+// === Grid ===
+@mixin grid($columns: 1fr, $gap: $spacing-lg) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+}
+
+// === Flex Center ===
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

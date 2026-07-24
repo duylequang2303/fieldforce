@@ -1,0 +1,114 @@
+// === Sortscape Style Kanban Cards ===
+.o_kanban_view {
+  background-color: $bg-body !important;
+  font-family: $font-family !important;
+  padding: $spacing-md !important;
+  
+  // Kanban column headers
+  .o_kanban_group:not(.o_column_folded) {
+    background-color: #faf9f5 !important; // Slightly warm white background for columns
+    border: 1px solid $border !important;
+    border-radius: $border-radius-lg !important;
+    padding: $spacing-md !important;
+    margin-right: $spacing-md !important;
+    
+    .o_kanban_header {
+      background-color: transparent !important;
+      border-bottom: 2px solid $primary !important; // Clean green line below column title
+      padding: 0 0 $spacing-sm 0 !important;
+      margin-bottom: $spacing-md !important;
+      
+      .o_kanban_header_title {
+        color: $text-primary !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 13px !important;
+        letter-spacing: 0.5px !important;
+      }
+
+      // Record counter on header
+      .o_kanban_counter {
+        font-size: 11px !important;
+        color: $text-muted !important;
+        font-weight: 600 !important;
+      }
+    }
+  }
+
+  // The actual cards (Exclude alignment ghost cards)
+  .o_kanban_record:not(.o_kanban_ghost) {
+    background: $bg-card !important;
+    border: 1px solid $border !important;
+    border-radius: $border-radius-md !important;
+    box-shadow: $shadow-card !important;
+    padding: $spacing-md !important;
+    margin-bottom: $spacing-md !important;
+    transition: all $transition-fast !important;
+    font-size: $font-size-body !important;
+
+    &:hover {
+      box-shadow: $shadow-card-hover !important;
+      transform: translateY(-2px) !important;
+      border-color: $primary !important; // Green border on hover!
+    }
+    
+    // Sortscape tag / badge styling (e.g., "12 To Do")
+    .btn, .badge, [class*="bg-"] {
+      border-radius: $border-radius-sm !important;
+      font-weight: 700 !important;
+      font-size: $font-size-caption !important;
+      padding: 3px 8px !important;
+      letter-spacing: 0.3px !important;
+    }
+    
+    .btn-primary, .badge-success, .bg-success {
+      background-color: $primary !important;
+      border-color: $primary-dark !important;
+      color: $white !important;
+      
+      &:hover {
+        background-color: $primary-dark !important;
+      }
+    }
+
+    // Clean up texts and lists inside card
+    a, span, p, div {
+      color: $text-secondary !important;
+      line-height: $line-height-relaxed !important;
+    }
+
+    // Primary text elements (like "Default Team" or custom record name)
+    strong, .o_kanban_record_title {
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      color: $text-primary !important;
+      display: block !important;
+      margin-bottom: $spacing-sm !important;
+    }
+
+    // Spacing between lines
+    .oe_kanban_details {
+      ul {
+        padding-left: 0 !important;
+        margin-bottom: 0 !important;
+        
+        li {
+          color: $text-secondary !important;
+          font-size: 12px !important;
+          padding-top: $spacing-xs !important;
+        }
+      }
+    }
+  }
+
+  // Force align ghost/dummy cards to be totally invisible
+  .o_kanban_ghost {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    box-shadow: none !important;
+  }
+}

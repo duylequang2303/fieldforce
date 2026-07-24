@@ -1,0 +1,55 @@
+// === Main Navbar (Sortscape Header) ===
+.o_navbar, .o_main_navbar {
+  background-color: $bg-navbar !important;
+  border-bottom: none !important;
+
+  // Override Odoo 19 dynamic colors if any
+  --o-navbar-background: #{$bg-navbar} !important;
+  --o-navbar-text: #{$white} !important;
+
+  .o_menu_brand {
+    font-weight: 600;
+    color: $white !important;
+    font-size: $font-size-h2;
+    background-color: transparent !important;
+  }
+
+  .o_menu_sections {
+    background-color: transparent !important;
+    
+    .o_menu_sections_link,
+    .dropdown-toggle,
+    .o_nav_entry {
+      font-size: $font-size-body;
+      border-radius: 0; // Sortscape tabs are blocky
+      color: rgba($white, 0.9) !important;
+      transition: background $transition-fast, color $transition-fast;
+      padding: 0 $spacing-md;
+      background-color: transparent !important;
+      
+      &:hover {
+        background-color: rgba($white, 0.1) !important;
+        color: $white !important;
+      }
+      
+      // Active state tab (Sortscape green)
+      &.active, &:focus, &:active {
+        background-color: $primary !important;
+        color: $white !important;
+      }
+    }
+  }
+
+  // Systray icons (right side)
+  .o_menu_systray {
+    background-color: transparent !important;
+    
+    .dropdown-toggle {
+      color: rgba($white, 0.9) !important;
+      &:hover {
+        background-color: rgba($white, 0.1) !important;
+        color: $white !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Bổ sung tính năng Báo giá (Quotes) vào Operations -->
+    <menuitem id="menu_fsm_quotes" 
+              name="Quotes" 
+              parent="fieldservice.operations" 
+              action="sale.action_quotations" 
+              sequence="50"/>
+
+    <!-- Bổ sung tính năng Hóa đơn (Invoicing) vào Operations -->
+    <menuitem id="menu_fsm_invoicing" 
+              name="Invoicing" 
+              parent="fieldservice.operations" 
+              action="account.action_move_out_invoice_type" 
+              sequence="60"/>
+
+    <!-- Bổ sung tính năng Chấm công (Timesheets) vào Operations -->
+    <menuitem id="menu_fsm_timesheets" 
+              name="Timesheets" 
+              parent="fieldservice.operations" 
+              action="hr_timesheet.timesheet_action_all" 
+              sequence="70"/>
+
+    <!-- Bổ sung tính năng Issues (Helpdesk Tickets / Project Tasks) vào Operations -->
+    <menuitem id="menu_fsm_issues" 
+              name="Issues" 
+              parent="fieldservice.operations" 
+              action="project.action_view_task" 
+              sequence="80"/>
+</odoo>

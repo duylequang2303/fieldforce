@@ -1,0 +1,63 @@
+// === Tables ===
+.o_list_view, .table {
+  thead th {
+    background: $bg-input !important;
+    color: $text-secondary !important;
+    font-weight: 600 !important;
+    font-size: $font-size-body !important;
+    padding: $spacing-sm $spacing-md !important;
+    border-bottom: 2px solid $border !important;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  tbody td {
+    padding: $spacing-sm $spacing-md !important;
+    border-bottom: 1px solid $border-light !important;
+    font-size: $font-size-body !important;
+    color: $text-primary !important;
+    vertical-align: middle;
+    transition: background $transition-fast;
+  }
+  tbody tr:hover td {
+    background: rgba($primary, 0.02) !important;
+  }
+  .o_data_row {
+    border-bottom: 1px solid $border-light !important;
+  }
+}
+
+// === Kanban ===
+.o_kanban_record {
+  border-radius: $border-radius-lg !important;
+  border: 1px solid $border !important;
+  box-shadow: $shadow-card !important;
+  background: $bg-card !important;
+  transition: transform $transition-base, box-shadow $transition-base;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-card-hover;
+  }
+  .o_kanban_card_header {
+    padding: $spacing-md !important;
+    .o_kanban_record_title {
+      font-size: $font-size-body !important;
+      font-weight: 600;
+      color: $text-primary;
+    }
+  }
+  .o_kanban_record_body {
+    padding: 0 $spacing-md $spacing-md !important;
+  }
+  .o_kanban_record_footer {
+    padding: $spacing-sm $spacing-md !important;
+    border-top: 1px solid $border-light !important;
+  }
+  .o_status {
+    font-size: $font-size-caption !important;
+    padding: $spacing-xs $spacing-sm !important;
+    border-radius: 999px !important;
+    background: $bg-input !important;
+    color: $text-secondary !important;
+    font-weight: 500;
+  }
+}

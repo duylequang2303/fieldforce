@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="my_quick_theme_assets_variables" model="ir.asset">
+        <field name="name">my_quick_theme variables</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_variables.scss</field>
+        <field name="sequence">1</field>
+    </record>
+    <record id="my_quick_theme_assets_mixins" model="ir.asset">
+        <field name="name">my_quick_theme mixins</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_mixins.scss</field>
+        <field name="sequence">2</field>
+    </record>
+    <record id="my_quick_theme_assets_typography" model="ir.asset">
+        <field name="name">my_quick_theme typography</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_typography.scss</field>
+        <field name="sequence">3</field>
+    </record>
+    <record id="my_quick_theme_assets_navbar" model="ir.asset">
+        <field name="name">my_quick_theme navbar</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_navbar.scss</field>
+        <field name="sequence">4</field>
+    </record>
+    <record id="my_quick_theme_assets_control_panel" model="ir.asset">
+        <field name="name">my_quick_theme control panel</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_control_panel.scss</field>
+        <field name="sequence">5</field>
+    </record>
+    <record id="my_quick_theme_assets_cards" model="ir.asset">
+        <field name="name">my_quick_theme cards</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_cards.scss</field>
+        <field name="sequence">6</field>
+    </record>
+    <record id="my_quick_theme_assets_forms" model="ir.asset">
+        <field name="name">my_quick_theme forms</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_forms.scss</field>
+        <field name="sequence">7</field>
+    </record>
+    <record id="my_quick_theme_assets_tables" model="ir.asset">
+        <field name="name">my_quick_theme tables</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_tables.scss</field>
+        <field name="sequence">8</field>
+    </record>
+    <record id="my_quick_theme_assets_calendar" model="ir.asset">
+        <field name="name">my_quick_theme calendar</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_calendar.scss</field>
+        <field name="sequence">9</field>
+    </record>
+    <record id="my_quick_theme_assets_app_launcher" model="ir.asset">
+        <field name="name">my_quick_theme app launcher</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_app_launcher.scss</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="my_quick_theme_assets_animations" model="ir.asset">
+        <field name="name">my_quick_theme animations</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/scss/_animations.scss</field>
+        <field name="sequence">11</field>
+    </record>
+    <record id="my_quick_theme_navbar_xml" model="ir.asset">
+        <field name="name">my_quick_theme navbar patch</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">my_quick_theme/static/src/xml/navbar_patch.xml</field>
+        <field name="sequence">12</field>
+    </record>
+</odoo>
