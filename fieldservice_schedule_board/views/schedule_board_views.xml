@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Client Action for Schedule Board -->
+    <record id="action_schedule_board" model="ir.actions.client">
+        <field name="name">Schedule Board</field>
+        <field name="tag">schedule_board</field>
+        <field name="target">main</field>
+        <field name="res_model">fsm.order</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem
+        id="menu_schedule_board"
+        name="Schedule Board"
+        action="action_schedule_board"
+        parent="fieldservice.dashboard"
+        sequence="5"
+        groups="fieldservice.group_fsm_team"
+    />
+</odoo>

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates xml:space="preserve">
+
+    <!-- Main Schedule Board Template -->
+    <t t-name="fieldservice_schedule_board.ScheduleBoard" owl="1">
+        <div class="o_schedule_board" t-ref="main">
+            <!-- ===== Top Bar ===== -->
+            <div class="sb-topbar">
+                <div class="sb-topbar-left">
+                    <span class="sb-logo">
+                        <i class="fa fa-calendar-check-o" aria-hidden="true"/>
+                        <span class="sb-logo-text">FieldForce</span>
+                    </span>
+                </div>
+                <div class="sb-topbar-right">
+                    <button class="sb-icon-btn" title="Menu">
+                        <i class="fa fa-bars"/>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===== Secondary Nav ===== -->
+            <div class="sb-secondary-nav">
+                <div class="sb-nav-left">
+                    <span class="sb-badge sb-badge-client">
+                        <i class="fa fa-building-o"/> All Projects
+                    </span>
+                    <span t-foreach="['Schedule', 'Properties', 'Contacts', 'Roster', 'Quotes', 'Invoicing', 'Issues', 'Timesheets', 'Reports']" t-as="tab" t-key="tab_index">
+                        <span t-att-class="'sb-nav-tab' + (tab === 'Schedule' ? ' active' : '')">
+                            <t t-esc="tab"/>
+                        </span>
+                    </span>
+                </div>
+                <div class="sb-nav-right">
+                    <div class="sb-search-box">
+                        <i class="fa fa-search"/>
+                        <input type="text" placeholder="Search properties, customers..." class="sb-search-input"/>
+                    </div>
+                    <button class="sb-btn sb-btn-primary sb-btn-add">
+                        <i class="fa fa-plus"/> Add
+                    </button>
+                    <button class="sb-icon-btn" title="Settings">
+                        <i class="fa fa-cog"/>
+                    </button>
+                    <button class="sb-icon-btn" title="Info">
+                        <i class="fa fa-info-circle"/>
+                    </button>
+                    <div class="sb-avatar" title="User">
+                        <i class="fa fa-user-circle-o"/>
+                        <i class="fa fa-caret-down"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Calendar Toolbar ===== -->
+            <div class="sb-calendar-toolbar">
+                <div class="sb-toolbar-left">
+                    <i class="fa fa-calendar sb-toolbar-icon"/>
+                    <button class="sb-icon-btn" t-on-click="prevWeek">
+                        <i class="fa fa-chevron-left"/>
+                    </button>
+                    <button class="sb-icon-btn" t-on-click="nextWeek">
+                        <i class="fa fa-chevron-right"/>
+                    </button>
+                    <span class="sb-date-range" t-esc="weekLabel"/>
+                    <button class="sb-btn sb-btn-outline sb-btn-sm" t-on-click="goToToday">Today</button>
+                    <select class="sb-select sb-quick-nav">
+                        <option>Quick nav</option>
+                    </select>
+                </div>
+                <div class="sb-toolbar-right">
+                    <button class="sb-icon-btn" title="Search">
+                        <i class="fa fa-search"/>
+                    </button>
+                    <button class="sb-icon-btn" title="Map View" t-on-click="toggleSidebar">
+                        <i class="fa fa-map-o"/>
+                    </button>
+                    <select class="sb-select sb-view-mode">
+                        <option value="week">Week</option>
+                        <option value="day">Day</option>
+                        <option value="month">Month</option>
+                    </select>
+                    <button class="sb-icon-btn" title="Filter">
+                        <i class="fa fa-sliders"/>
+                    </button>
+                    <select class="sb-select sb-tools">
+                        <option>Tools</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ===== Day Header Bar ===== -->
+            <div class="sb-day-header">
+                <div class="sb-day-header-content">
+                    <t t-if="state.dayHeaders.length > 0">
+                        <span class="sb-day-label" t-esc="state.dayHeaders[0].label"/>
+                    </t>
+                    <div class="sb-day-actions">
+                        <button class="sb-icon-btn sb-icon-btn-sm" title="Print">
+                            <i class="fa fa-print"/>
+                        </button>
+                        <button class="sb-icon-btn sb-icon-btn-sm" title="Email">
+                            <i class="fa fa-envelope-o"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Main Content Area ===== -->
+            <div class="sb-main-content">
+                <!-- Sidebar: Unscheduled Orders -->
+                <div t-att-class="'sb-unscheduled-sidebar' + (state.sidebarOpen ? '' : ' sb-sidebar-collapsed')">
+                    <UnscheduledSidebar
+                        orders="state.unscheduledOrders"
+                        searchTerm="state.searchTerm"
+                        onSearchInput.bind="onSearchInput"
+                        onDragStart.bind="onDragStart"
+                        onDrop.bind="onDropUnscheduled"
+                        onOrderClick.bind="onOrderClick"
+                    />
+                </div>
+
+                <!-- Team Columns (Kanban) -->
+                <div class="sb-team-columns">
+                    <t t-if="state.loading">
+                        <div class="sb-loading">
+                            <i class="fa fa-spinner fa-spin fa-3x"/>
+                            <span>Loading schedule...</span>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <t t-foreach="state.teams" t-as="team" t-key="team.id">
+                            <div class="sb-team-column">
+                                <TeamColumnHeader team="team"/>
+
+                                <div class="sb-team-column-body"
+                                    t-on-dragover="onDragOver"
+                                    t-on-drop="(ev) => onDropOnTeam(ev, team.id, state.dayHeaders[0].dateStr)">
+                                    <t t-foreach="state.dayHeaders" t-as="day" t-key="day.dateStr">
+                                        <div class="sb-day-slot"
+                                            t-att-class="day.isToday ? 'sb-today' : ''"
+                                            t-att-data-date="day.dateStr">
+                                            <t t-set="teamData" t-value="state.ordersByTeam[team.id]"/>
+                                            <t t-if="teamData">
+                                                <t t-foreach="teamData.orders" t-as="order" t-key="order.id">
+                                                    <t t-if="order.scheduled_date_start and order.scheduled_date_start.startsWith(day.dateStr)">
+                                                        <OrderCard
+                                                            order="order"
+                                                            onDragStart.bind="(ev) => onDragStart(ev, order.id)"
+                                                            onOrderClick.bind="() => onOrderClick(order.id)"
+                                                        />
+                                                    </t>
+                                                </t>
+                                            </t>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </div>
+
+            <!-- ===== Detail Panel (Slide-over) ===== -->
+            <t t-if="state.detailPanelOpen and state.selectedOrderDetail">
+                <DetailPanel
+                    order="state.selectedOrderDetail"
+                    onClose.bind="closeDetailPanel"
+                />
+            </t>
+
+            <!-- ===== Loading Overlay ===== -->
+            <t t-if="state.loading">
+                <div class="sb-loading-overlay"/>
+            </t>
+
+            <!-- ===== Chat Widget ===== -->
+            <ChatWidget
+                isOpen="state.chatOpen"
+                onToggle.bind="toggleChat"
+            />
+        </div>
+    </t>
+
+    <!-- Team Column Header Sub-component -->
+    <t t-name="fieldservice_schedule_board.TeamColumnHeader" owl="1">
+        <div class="sb-team-header">
+            <div class="sb-team-avatar">
+                <span class="sb-avatar-letter" t-esc="props.team.name ? props.team.name[0] : '?'"/>
+            </div>
+            <span class="sb-team-name" t-esc="props.team.name"/>
+            <div class="sb-team-actions">
+                <button class="sb-icon-btn sb-icon-btn-xs" title="Hide">
+                    <i class="fa fa-times"/>
+                </button>
+                <button class="sb-icon-btn sb-icon-btn-xs" title="Add Person">
+                    <i class="fa fa-user-plus"/>
+                </button>
+                <button class="sb-icon-btn sb-icon-btn-xs" title="Files">
+                    <i class="fa fa-file-o"/>
+                </button>
+                <button class="sb-icon-btn sb-icon-btn-xs" title="More">
+                    <i class="fa fa-ellipsis-h"/>
+                </button>
+            </div>
+        </div>
+    </t>
+
+    <!-- Order Card Sub-component -->
+    <t t-name="fieldservice_schedule_board.OrderCard" owl="1">
+        <div class="sb-order-card"
+            draggable="true"
+            t-on-dragstart="(ev) => props.onDragStart(ev)"
+            t-on-click="() => props.onOrderClick()"
+            t-att-class="getStageClass(props.order.stage)">
+            <div class="sb-card-row1">
+                <span class="sb-card-address" t-esc="props.order.address_short"/>
+                <span class="sb-card-time" t-if="props.order.scheduled_date_start">
+                    <t t-esc="formatTime(props.order.scheduled_date_start)"/>
+                    <t t-if="props.order.scheduled_date_end">
+                        - <t t-esc="formatTime(props.order.scheduled_date_end)"/>
+                    </t>
+                </span>
+            </div>
+            <div class="sb-card-row2">
+                <span class="sb-card-location" t-esc="props.order.location.city || 'No city'"/>
+                <span class="sb-card-stage" t-att-style="'background-color: ' + getStageColor(props.order.stage)">
+                    <t t-esc="props.order.stage ? props.order.stage.name : ''"/>
+                </span>
+            </div>
+            <div class="sb-card-row3" t-if="props.order.tag_ids and props.order.tag_ids.length">
+                <t t-foreach="props.order.tag_ids" t-as="tag">
+                    <span class="sb-tag" t-att-style="'background-color: ' + formatTagColor(tag.color)">
+                        <t t-esc="tag.name ? tag.name.substring(0, 2).toUpperCase() : ''"/>
+                    </span>
+                </t>
+            </div>
+            <div class="sb-card-footer">
+                <t t-if="props.order.person and props.order.person.name">
+                    <span class="sb-card-person">
+                        <i class="fa fa-user"/> <t t-esc="props.order.person.name"/>
+                    </span>
+                </t>
+                <i t-if="false" class="fa fa-repeat sb-card-recurring" title="Recurring"/>
+            </div>
+        </div>
+    </t>
+
+    <!-- Unscheduled Sidebar Sub-component -->
+    <t t-name="fieldservice_schedule_board.UnscheduledSidebar" owl="1">
+        <div class="sb-sidebar-content">
+            <div class="sb-sidebar-header">
+                <span class="sb-sidebar-title">
+                    <i class="fa fa-list-ul"/> Unscheduled
+                </span>
+                <button class="sb-icon-btn sb-icon-btn-sm">
+                    <i class="fa fa-chevron-left"/>
+                </button>
+            </div>
+            <div class="sb-sidebar-search">
+                <input type="text" class="sb-sidebar-search-input"
+                    placeholder="Search orders..."
+                    t-model="props.searchTerm"
+                    t-on-input="(ev) => props.onSearchInput(ev)"/>
+                <button class="sb-icon-btn sb-icon-btn-sm">
+                    <i class="fa fa-times"/>
+                </button>
+            </div>
+            <div class="sb-sidebar-filter">
+                <select class="sb-select sb-select-sm">
+                    <option>Filter by tags</option>
+                </select>
+            </div>
+            <div class="sb-sidebar-list"
+                t-on-dragover="(ev) => ev.preventDefault()"
+                t-on-drop="(ev) => props.onDrop(ev)">
+                <t t-foreach="props.orders" t-as="order" t-key="order.id">
+                    <div class="sb-sidebar-item"
+                        draggable="true"
+                        t-on-dragstart="(ev) => props.onDragStart(ev, order.id)"
+                        t-on-click="() => props.onOrderClick(order.id)">
+                        <div class="sb-sidebar-item-main">
+                            <span class="sb-sidebar-item-address" t-esc="order.address_short"/>
+                            <span class="sb-sidebar-item-time" t-if="order.scheduled_date_start">
+                                <t t-esc="formatTime(order.scheduled_date_start)"/>
+                            </span>
+                        </div>
+                        <div class="sb-sidebar-item-sub">
+                            <span class="sb-sidebar-item-location" t-esc="order.location.city || ''"/>
+                        </div>
+                    </div>
+                </t>
+                <t t-if="!props.orders or !props.orders.length">
+                    <div class="sb-sidebar-empty">
+                        <i class="fa fa-inbox"/> No unscheduled orders
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+
+    <!-- Detail Panel Sub-component -->
+    <t t-name="fieldservice_schedule_board.DetailPanel" owl="1">
+        <div>
+            <div class="sb-detail-panel-overlay" t-on-click="props.onClose"/>
+            <div class="sb-detail-panel">
+                <div class="sb-detail-header">
+                    <button class="sb-icon-btn" t-on-click="props.onClose">
+                        <i class="fa fa-chevron-right"/>
+                    </button>
+                    <div class="sb-detail-date">
+                        <t t-if="props.order.date_start">
+                            <t t-esc="formatDisplayDate(props.order.date_start)"/>
+                        </t>
+                        <t t-else="">
+                            No date set
+                        </t>
+                    </div>
+                </div>
+
+                <div class="sb-detail-address" t-if="props.order.location">
+                    <div class="sb-detail-address-line1" t-esc="props.order.location.street || ''"/>
+                    <div class="sb-detail-address-line2">
+                        <t t-esc="props.order.location.city || ''"/>
+                        <t t-if="props.order.location.zip"> <t t-esc="props.order.location.zip"/></t>
+                    </div>
+                </div>
+
+                <div class="sb-detail-actions">
+                    <button class="sb-detail-action-btn" title="Call" t-if="props.order.location && props.order.location.phone">
+                        <a t-att-href="'tel:' + props.order.location.phone" style="color: inherit; text-decoration: none;">
+                            <i class="fa fa-phone"/>
+                        </a>
+                    </button>
+                    <button class="sb-detail-action-btn" title="Message">
+                        <i class="fa fa-comment-o"/>
+                    </button>
+                    <button class="sb-detail-action-btn" title="Email">
+                        <i class="fa fa-envelope-o"/>
+                    </button>
+                    <button class="sb-detail-action-btn" title="Directions">
+                        <i class="fa fa-map-marker"/>
+                    </button>
+                </div>
+
+                <div class="sb-detail-section" t-if="props.order.person">
+                    <span class="sb-detail-customer">
+                        <i class="fa fa-user"/> <t t-esc="props.order.person.name"/>
+                    </span>
+                </div>
+
+                <div class="sb-detail-info-grid">
+                    <div class="sb-detail-info-item">
+                        <i class="fa fa-clock-o"/>
+                        <span class="sb-detail-info-label">Due</span>
+                        <span class="sb-detail-info-value">
+                            <t t-if="props.order.date_start"><t t-esc="formatDisplayDate(props.order.date_start)"/></t>
+                            <t t-else="">Not set</t>
+                        </span>
+                    </div>
+                    <div class="sb-detail-info-item" t-if="props.order.duration">
+                        <i class="fa fa-repeat"/>
+                        <span class="sb-detail-info-label">Duration</span>
+                        <span class="sb-detail-info-value" t-esc="props.order.duration + 'h'"/>
+                    </div>
+                    <div class="sb-detail-info-item" t-if="props.order.date_start and props.order.date_end">
+                        <i class="fa fa-hourglass-half"/>
+                        <span class="sb-detail-info-label">Time</span>
+                        <span class="sb-detail-info-value">
+                            <t t-esc="formatTime(props.order.date_start)"/> - <t t-esc="formatTime(props.order.date_end)"/>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="sb-detail-actions-main">
+                    <button class="sb-btn sb-btn-primary">
+                        <i class="fa fa-file-text-o"/> Create Invoice
+                    </button>
+                    <button class="sb-btn sb-btn-outline">
+                        <i class="fa fa-refresh"/> Reopen
+                    </button>
+                    <button class="sb-icon-btn">
+                        <i class="fa fa-ellipsis-h"/>
+                    </button>
+                </div>
+
+                <div class="sb-detail-status" t-if="props.order.stage">
+                    <span class="sb-detail-status-badge"
+                        t-att-style="'background-color: ' + props.order.stage.color">
+                        <t t-esc="props.order.stage.name"/>
+                    </span>
+                    <t t-if="props.order.date_start">
+                        <span class="sb-detail-status-text">
+                            Completed at <t t-esc="formatTime(props.order.date_start)"/>
+                        </span>
+                    </t>
+                </div>
+
+                <div class="sb-detail-section-title">
+                    <i class="fa fa-file-text-o"/> Work Instructions &amp; Requirements
+                </div>
+                <div class="sb-detail-section-content" t-esc="props.order.instructions || 'No instructions available'"/>
+
+                <div class="sb-detail-section-title">
+                    <i class="fa fa-exclamation-triangle"/> Issues
+                </div>
+                <div class="sb-detail-section-content sb-detail-issues">
+                    <div class="sb-detail-no-issues">No issues reported</div>
+                    <button class="sb-btn sb-btn-link">
+                        <i class="fa fa-plus"/> Add Issue
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Chat Widget Sub-component -->
+    <t t-name="fieldservice_schedule_board.ChatWidget" owl="1">
+        <div class="sb-chat-widget">
+            <t t-if="!props.isOpen">
+                <button class="sb-chat-bubble" t-on-click="props.onToggle">
+                    <i class="fa fa-comment-o"/>
+                    <span class="sb-chat-badge">3</span>
+                </button>
+            </t>
+            <t t-else="">
+                <div class="sb-chat-panel">
+                    <div class="sb-chat-header">
+                        <span>Assistant</span>
+                        <button class="sb-icon-btn sb-icon-btn-sm" t-on-click="props.onToggle">
+                            <i class="fa fa-times"/>
+                        </button>
+                    </div>
+                    <div class="sb-chat-messages">
+                        <div class="sb-chat-msg sb-chat-msg-bot">
+                            <div class="sb-chat-msg-text">Hello! How can I help you today?</div>
+                            <div class="sb-chat-msg-time">Just now</div>
+                        </div>
+                    </div>
+                    <div class="sb-chat-input">
+                        <input type="text" placeholder="Type a message..."/>
+                        <button class="sb-icon-btn">
+                            <i class="fa fa-send-o"/>
+                        </button>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>
