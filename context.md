@@ -27,8 +27,8 @@ Tài liệu này lưu trữ thông tin bối cảnh dự án (Project Context) c
 
 ---
 
-## 2. Danh sách các Module Odoo hiện tại trong Workspace
-Dự án bao gồm các phân hệ cốt lõi sau:
+## 2. Danh sách các Module Odoo hiện tại trong thư mục `develop/`
+Dự án bao gồm các phân hệ cốt lõi sau (nằm trong thư mục `develop/`):
 
 1. **[fieldservice](file:///home/odoodev/Duck/odoo/fieldforce/fieldservice):** Phân hệ cốt lõi quản lý Địa điểm (`fsm.location`), Nhân viên hiện trường (`fsm.person`) và Đơn dịch vụ (`fsm.order`).
 2. **[fsm_route_map](file:///home/odoodev/Duck/odoo/fieldforce/fsm_route_map):** Quản lý bản đồ lộ trình di chuyển của Worker.
