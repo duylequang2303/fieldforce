@@ -10,7 +10,7 @@ Tài liệu này lưu trữ thông tin bối cảnh dự án (Project Context) c
 * **Mục tiêu:** Quản lý địa điểm dịch vụ (Locations), điều phối nhân viên (Workers), quản lý yêu cầu công việc (Orders), tích hợp kho bãi, phương tiện, thời gian và chi phí.
 
 ### Thông tin Server & Deployment Backend
-* **Server URL:** `https://demo001.crmhub.vn/`
+* **Server URL:** `https://demo002.crmhub.vn/`
 * **File cấu hình Odoo:** `/etc/odoo19/odoo.conf`
 * **Lệnh restart Odoo:** `systemctl restart odoo19`
 
