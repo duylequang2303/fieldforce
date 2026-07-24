@@ -86,3 +86,6 @@ docs/_build/
 
 # OCA rules
 !static/lib/
+
+# Local AI workspace rules & secrets
+.agents/
